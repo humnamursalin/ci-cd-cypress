@@ -37,7 +37,7 @@ pipeline {
         stage('Serve Frontend') {
             steps {
                 sh '''
-                    nohup python3 -m http.server 8081 --directory frontend &
+                    nohup python3 -m http.server 8899 --directory frontend &
                     sleep 2
                 '''
             }
