@@ -3,6 +3,31 @@ pipeline {
 
     stages {
 
+        stage('DEBUG ENV') {
+            steps {
+                sh '''
+                    echo "=== WHOAMI ==="
+                    whoami
+
+                    echo "=== WHERE AM I ==="
+                    pwd
+
+                    echo "=== PYTHON VERSION ==="
+                    python3 --version || true
+                    /usr/bin/python3 --version || true
+
+                    echo "=== WHICH PYTHON ==="
+                    which python3 || true
+                    ls -l /usr/bin/python3 || true
+
+                    echo "=== OS INFO ==="
+                    uname -a || true
+                    cat /etc/os-release || true
+                '''
+            }
+        }
+
+
         stage('Install Python Dependencies') {
             steps {
                 sh '''
