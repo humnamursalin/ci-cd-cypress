@@ -62,7 +62,7 @@ pipeline {
             steps {
                 sh '''
                     . venv/bin/activate
-                    python3 -c "from utils import send_slack_message; send_slack_message('✅ Pipeline Success — Tests Completed')"
+                    python3 -c "from utils import send_slack_message; send_slack_message('✅ Pipeline Success — Unit & E2E Tests Completed')"
                 '''
             }
         }
