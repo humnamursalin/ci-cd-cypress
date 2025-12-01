@@ -54,9 +54,6 @@ pipeline {
                         npx cypress install
                         npx cypress run \
                             --quiet \
-                            --no-color \
-                            --headless \
-                            --browser electron
                     '''
                 }
             }
