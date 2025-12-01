@@ -45,8 +45,11 @@ pipeline {
 
         stage('Run Cypress Tests') {
             steps {
-                dir('frontend') {
-                    sh 'npx cypress run'
+               dir('frontend') {
+                    sh '''
+                        npx cypress install
+                        npx cypress run
+                    '''
                 }
             }
         }
