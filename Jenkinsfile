@@ -3,27 +3,34 @@ pipeline {
 
     stages {
 
-        stage('Install Python Deps') {
+        stage('Python venv + Dependencies') {
             steps {
-                sh 'pip install --break-system-packages -r requirements.txt'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Run Unit Tests') {
             steps {
-                sh 'pytest -v'
+                sh '''
+                    . venv/bin/activate
+                    pytest -v
+                '''
             }
         }
 
-        stage('Install Frontend Dependencies') {
+        stage('Install Node Dependencies') {
             steps {
                 dir('frontend') {
-                    // create package.json if missing, then install deps
                     sh '''
-                    if [ ! -f package.json ]; then
-                      npm init -y
-                    fi
-                    npm install
+                        if [ ! -f package.json ]; then
+                            npm init -y
+                        fi
+                        npm install
                     '''
                 }
             }
@@ -31,7 +38,6 @@ pipeline {
 
         stage('Serve Frontend') {
             steps {
-                // serve static files from ./frontend on port 8080
                 sh 'nohup python3 -m http.server 8080 --directory frontend &'
                 sh 'sleep 3'
             }
