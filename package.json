@@ -1,0 +1,27 @@
+{
+  "name": "ci-cd-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humnamursalin/ci-cd-cypress.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/humnamursalin/ci-cd-cypress/issues"
+  },
+  "homepage": "https://github.com/humnamursalin/ci-cd-cypress#readme",
+  "devDependencies": {
+    "cypress": "^15.7.0"
+  }
+}

@@ -15,22 +15,29 @@ pipeline {
             }
         }
 
-        stage('Install Cypress') {
+        stage('Install Frontend Dependencies') {
             steps {
                 dir('frontend') {
-                    sh 'npm install cypress --save-dev'
+                    // create package.json if missing, then install deps
+                    sh '''
+                    if [ ! -f package.json ]; then
+                      npm init -y
+                    fi
+                    npm install
+                    '''
                 }
             }
         }
 
         stage('Serve Frontend') {
             steps {
+                // serve static files from ./frontend on port 8080
                 sh 'nohup python3 -m http.server 8080 --directory frontend &'
                 sh 'sleep 3'
             }
         }
 
-        stage('Run Cypress') {
+        stage('Run Cypress Tests') {
             steps {
                 dir('frontend') {
                     sh 'npx cypress run'
