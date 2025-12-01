@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/humnamursalin/ci-cd-cypress#readme",
   "devDependencies": {
-    "cypress": "^15.7.0"
+    "cypress": "^13.13.1"
   }
 }
