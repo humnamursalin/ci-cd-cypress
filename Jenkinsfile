@@ -3,36 +3,12 @@ pipeline {
 
     stages {
 
-        stage('DEBUG ENV') {
-            steps {
-                sh '''
-                    echo "=== WHOAMI ==="
-                    whoami
-
-                    echo "=== WHERE AM I ==="
-                    pwd
-
-                    echo "=== PYTHON VERSION ==="
-                    python3 --version || true
-                    /usr/bin/python3 --version || true
-
-                    echo "=== WHICH PYTHON ==="
-                    which python3 || true
-                    ls -l /usr/bin/python3 || true
-
-                    echo "=== OS INFO ==="
-                    uname -a || true
-                    cat /etc/os-release || true
-                '''
-            }
-        }
-
-
         stage('Install Python Dependencies') {
             steps {
                 sh '''
-                    /usr/bin/pip3 install --upgrade pip
-                    /usr/bin/pip3 install -r requirements.txt
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install -r requirements.txt
                 '''
             }
         }
@@ -40,7 +16,8 @@ pipeline {
         stage('Run Unit Tests') {
             steps {
                 sh '''
-                    /usr/bin/python3 -m pytest -v
+                    . venv/bin/activate
+                    pytest -v
                 '''
             }
         }
@@ -59,7 +36,7 @@ pipeline {
         stage('Serve Frontend') {
             steps {
                 sh '''
-                    nohup /usr/bin/python3 -m http.server 8080 --directory frontend &
+                    nohup python3 -m http.server 8080 --directory frontend &
                     sleep 2
                 '''
             }
