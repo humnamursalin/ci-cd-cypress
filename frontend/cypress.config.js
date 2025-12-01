@@ -10,7 +10,7 @@ module.exports = defineConfig({
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
     video: false,
     screenshotOnRunFailure: true,
-    reporter: "spec",
+    reporter: "min",
     reporterOptions: {
       showTestDuration: false
     }
