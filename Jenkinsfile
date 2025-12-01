@@ -52,7 +52,11 @@ pipeline {
                dir('frontend') {
                     sh '''
                         npx cypress install
-                        npx cypress run
+                        npx cypress run \
+                            --quiet \
+                            --no-color \
+                            --headless \
+                            --browser electron
                     '''
                 }
             }
