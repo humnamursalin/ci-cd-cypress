@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+      environment {
+        SLACK_WEBHOOK_URL = credentials('slack-webhook')
+    }
+
+
     stages {
 
         stage('Install Python Dependencies') {
