@@ -6,6 +6,6 @@ document.getElementById("change-color").onclick = () => {
     document.getElementById("main-title").style.color = "blue";
 };
 
-document.getElementById("show-message").onclick = () => {
-    document.getElementById("message-box").innerText = "Button clicked!";
-};
+// document.getElementById("show-message").onclick = () => {
+//     document.getElementById("message-box").innerText = "Button clicked!";
+// };
